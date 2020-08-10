@@ -12,15 +12,17 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ConditonalEvaluatorTest {
 
-    //For basic testing, don't review.
+    //For basic testing/debugging
     @Test
     public void evaluatorTest() throws InvalidExpressionException, InvalidTokenException, InvalidOperandException {
         InfixToPostfixTokeniser tokeniser = new InfixToPostfixTokeniser();
-//        List<Token> tokens = tokeniser.convert("age > 25 AND gender == \"Male\"");
-//        List<Token> tokens = tokeniser.convert("( age > 25 AND gender == \"Male\" ) OR ( past_order_amount > 10000 )");
-        List<Token> tokens = tokeniser.convert("age > 25 and address.city == \"Bangalore\"");
+        List<Token> tokens1 = tokeniser.convert("age > 25 AND gender == \"Male\"");
+        List<Token> tokens2 = tokeniser.convert("( age > 25 AND gender == \"Male\" ) OR ( past_order_amount > 10000 )");
+        List<Token> tokens3 = tokeniser.convert("age > 25 and address.city == \"Bangalore\"");
 
         HashMap<String,Object> userAttribute = new HashMap<>();
         userAttribute.put("age",26);
@@ -30,7 +32,9 @@ public class ConditonalEvaluatorTest {
         userAttribute.put("address.country", "India");
 
         ConditionalEvaluator conditionalEvaluator = new ConditionalEvaluator(new SimpleAttributeMapper(userAttribute));
-        System.out.println(conditionalEvaluator.evaluate(tokens));
+        assertEquals(true,conditionalEvaluator.evaluate(tokens1));
+        assertEquals(true,conditionalEvaluator.evaluate(tokens2));
+        assertEquals(true,conditionalEvaluator.evaluate(tokens3));
 
     }
 }

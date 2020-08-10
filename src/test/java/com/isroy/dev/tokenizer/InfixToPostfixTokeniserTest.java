@@ -10,7 +10,7 @@ import java.util.List;
 public class InfixToPostfixTokeniserTest {
 
     @Test
-    //For basic testing, don't review.
+    //For basic testing/debugging
     public void basicTokeniserTest(){
         InfixToPostfixTokeniser tokeniser = new InfixToPostfixTokeniser();
         try {
