@@ -3,6 +3,7 @@ package com.isroy.dev.tokenizer;
 import com.isroy.dev.exception.InvalidExpressionException;
 import com.isroy.dev.exception.InvalidTokenException;
 import com.isroy.dev.tokenizer.classifier.SimpleTokenClassifier;
+import com.isroy.dev.tokenizer.classifier.TokenClassifier;
 import com.isroy.dev.tokenizer.token.types.TokenType;
 import com.isroy.dev.tokenizer.token.OperatorToken;
 import com.isroy.dev.tokenizer.token.Token;
@@ -14,7 +15,7 @@ import java.util.Stack;
 
 public class InfixToPostfixTokeniser implements Tokeniser {
 
-    private SimpleTokenClassifier tokenClassifier;
+    private TokenClassifier tokenClassifier;
     private List<Token> tokenisedExpression;
     private Stack<Token> stack;
 
